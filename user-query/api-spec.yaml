@@ -1,0 +1,25 @@
+openapi: 3.0.0
+paths:
+  /api/users/all:
+    get:
+      operationId: UsersRestController_getAllUsers
+      parameters: []
+      responses:
+        "200":
+          description: ""
+  /metrics:
+    get:
+      operationId: PrometheusController_index
+      parameters: []
+      responses:
+        "200":
+          description: ""
+info:
+  title: User query API
+  description: "[CQRS] Query"
+  version: "1.0"
+  contact: {}
+tags: []
+servers: []
+components:
+  schemas: {}

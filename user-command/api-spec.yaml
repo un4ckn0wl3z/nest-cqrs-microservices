@@ -1,0 +1,48 @@
+openapi: 3.0.0
+paths:
+  /api/users/create:
+    post:
+      operationId: UsersRestController_createUser
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserRequestDto"
+      responses:
+        "201":
+          description: ""
+  /api/users/update:
+    post:
+      operationId: UsersRestController_updateUser
+      parameters: []
+      responses:
+        "201":
+          description: ""
+  /api/users/delete:
+    post:
+      operationId: UsersRestController_deleteUser
+      parameters: []
+      responses:
+        "201":
+          description: ""
+  /metrics:
+    get:
+      operationId: PrometheusController_index
+      parameters: []
+      responses:
+        "200":
+          description: ""
+info:
+  title: User command API
+  description: "[CQRS] Command"
+  version: "1.0"
+  contact: {}
+tags: []
+servers: []
+components:
+  schemas:
+    CreateUserRequestDto:
+      type: object
+      properties: {}
