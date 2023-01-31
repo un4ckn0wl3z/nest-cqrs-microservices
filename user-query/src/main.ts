@@ -9,45 +9,13 @@ import { LocalCacheService } from './framework/helper/local-cache.service';
 import { CustomLoggerService } from './framework/logger/logger.service';
 import * as yaml from 'yaml';
 import * as fs from 'fs';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import { LogDto } from './framework/logger/dtos/log.dto';
+
 import * as os from 'os';
 let KAFKA_BROKERS = Array<string>();
 let KAFKA_GROUP_ID = '';
 export const GLOBAL_OS_NAME = os.hostname();
 export let GLOBAL_KAFKA_LOGGER_INSTANCE: CustomLoggerService;
- 
 
-
-async function bootstrapEventListening() {
-  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    AppModule, 
-    {
-      transport: Transport.KAFKA,
-      options: {
-        client: {
-          brokers: KAFKA_BROKERS,
-        },
-        consumer: {
-          groupId: KAFKA_GROUP_ID,
-        }
-      }
-    }
-  );
-  
-  const logger = app.get<CustomLoggerService>(CustomLoggerService);
-  const configService = app.get<ConfigService>(ConfigService);
-  let logDto: LogDto;
-   logDto = {
-      type: 'detail',
-      appName: configService.get<string>('app.name') || '#############',
-      instance: GLOBAL_OS_NAME,
-      channel: 'KAFKA'
-  }
-  GLOBAL_KAFKA_LOGGER_INSTANCE = logger;
-  GLOBAL_KAFKA_LOGGER_INSTANCE.init(logDto);
-  await app.listen();
-}
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -76,8 +44,7 @@ async function bootstrap() {
   app.getHttpAdapter().getInstance().disable('x-powered-by');
   app.enableCors();
   await app.listen(configService.get<number>('app.port'));
-
-  bootstrapEventListening();
+  
 }
 
 bootstrap();

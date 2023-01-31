@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
-import { UsersEventController } from './users.event-controller';
+import { PrismaModule } from 'prisma/prisma.module';
+
 import { UsersRestController } from './users.rest-controller';
 
 @Module({
-    imports: [CqrsModule],
-    controllers: [UsersEventController, UsersRestController],
+    imports: [PrismaModule,CqrsModule],
+    controllers: [UsersRestController],
     providers: [],
   })
 export class UsersModule {}
