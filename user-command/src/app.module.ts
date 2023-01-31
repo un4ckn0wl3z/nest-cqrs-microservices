@@ -29,6 +29,7 @@ import * as fs from "fs";
 import { HttpModule } from '@nestjs/axios';
 import { CustomAxiosService } from './framework/util/custom-axios.service';
 import { UsersModule } from './users/users.module';
+import { PrismaModule } from 'prisma/prisma.module';
 const applicationVersionFile = './APPLICATION_VERSION.txt'
 
 fs.readFile(applicationVersionFile, function (err, data) {
