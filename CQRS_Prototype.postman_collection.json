@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "caee6cd7-0343-44c5-91d7-786d8f7e65d8",
-		"name": "CQRS_Prototype",
+		"_postman_id": "0df6b5de-52b8-4210-ab37-d6e432a3ad84",
+		"name": "CQRS_Prototype Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "3242847"
 	},
@@ -76,6 +76,46 @@
 						"api",
 						"users",
 						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserByEmail",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-transaction-id",
+						"value": "00000000000001",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"Anuwat\",\r\n    \"lastname\": \"Khongchuai\",\r\n    \"nickname\": \"Palm\",\r\n    \"email\": \"admin@unknownclub.net\",\r\n    \"password\": \"p@ssw0rd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/users/email/admin@unknownclub.net",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"users",
+						"email",
+						"admin@unknownclub.net"
 					]
 				}
 			},

@@ -7,6 +7,18 @@ paths:
       responses:
         "200":
           description: ""
+  "/api/users/email/{email}":
+    get:
+      operationId: UsersRestController_getUserByEmail
+      parameters:
+        - name: email
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
   /metrics:
     get:
       operationId: PrometheusController_index
